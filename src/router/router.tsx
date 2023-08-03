@@ -10,15 +10,15 @@ export const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: "/signup",
+        path: "signup",
         element: <Signup />,
       },
       {
-        path: "/signin",
+        path: "signin",
         element: <Signin />,
       },
       {
-        path: "/todo",
+        path: "todo",
         element: <TodoList />,
       },
     ],
