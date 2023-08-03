@@ -3,10 +3,11 @@ import { FC, HTMLInputTypeAttribute } from "react";
 
 type Props = {
   type: HTMLInputTypeAttribute;
+  testId: "email-input" | "password-input" | "signup-button";
 };
 
-export const AuthInput: FC<Props> = ({ type }) => {
-  return <StyledInput type={type} />;
+export const AuthInput: FC<Props> = ({ type, testId }) => {
+  return <StyledInput type={type} data-testid={testId} />;
 };
 
 const StyledInput = styled.input`

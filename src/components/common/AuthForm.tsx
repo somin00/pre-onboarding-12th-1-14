@@ -3,17 +3,22 @@ import { FC, PropsWithChildren } from "react";
 
 type Props = {
   title: string;
+  buttonTestId: "signup-button" | "signin-button";
 };
 
 const FORM_WIDTH = 400;
 const FORM_PADDING = 30;
 
-export const AuthForm: FC<PropsWithChildren<Props>> = ({ children, title }) => {
+export const AuthForm: FC<PropsWithChildren<Props>> = ({
+  children,
+  title,
+  buttonTestId,
+}) => {
   return (
     <StyledForm>
       <h1>{title}</h1>
       {children}
-      <StyledSubmitButton />
+      <StyledSubmitButton data-testid={buttonTestId} />
     </StyledForm>
   );
 };
