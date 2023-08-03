@@ -20,7 +20,9 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
     <StyledForm onSubmit={handleSubmit}>
       <h1>{title}</h1>
       {children}
-      <StyledSubmitButton type="submit" data-testid={buttonTestId} />
+      <StyledSubmitButton type="submit" data-testid={buttonTestId}>
+        {title}
+      </StyledSubmitButton>
     </StyledForm>
   );
 };
