@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { FC, FormEventHandler, PropsWithChildren } from "react";
+import { TestId } from "../../pages/Signin";
 
 type Props = {
   title: string;
-  buttonTestId: "signup-button" | "signin-button";
+  testId: TestId["button"];
   handleSubmit: FormEventHandler<HTMLFormElement>;
 };
 
@@ -13,14 +14,14 @@ const FORM_PADDING = 30;
 export const AuthForm: FC<PropsWithChildren<Props>> = ({
   children,
   title,
-  buttonTestId,
+  testId,
   handleSubmit,
 }) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h1>{title}</h1>
       {children}
-      <StyledSubmitButton type="submit" data-testid={buttonTestId}>
+      <StyledSubmitButton type="submit" data-testid={testId + "-button"}>
         {title}
       </StyledSubmitButton>
     </StyledForm>

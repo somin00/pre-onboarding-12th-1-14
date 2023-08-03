@@ -1,13 +1,37 @@
+import {
+  FC,
+  ChangeEventHandler,
+  Dispatch,
+  HTMLInputTypeAttribute,
+  SetStateAction,
+} from "react";
 import styled from "@emotion/styled";
-import { FC, HTMLInputTypeAttribute } from "react";
+
+import type { TestId, ValidationResult } from "../../pages/Signin";
 
 type Props = {
   type: HTMLInputTypeAttribute;
-  testId: "email-input" | "password-input" | "signup-button";
+  testId: TestId["input"];
+  validationResult: ValidationResult;
+  setValidationResult: Dispatch<SetStateAction<ValidationResult>>;
 };
 
-export const AuthInput: FC<Props> = ({ type, testId }) => {
-  return <StyledInput type={type} data-testid={testId} />;
+export const AuthInput: FC<Props> = ({
+  type,
+  testId,
+  validationResult,
+  setValidationResult,
+}) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {};
+
+  return (
+    <StyledInput
+      type={type}
+      data-testid={testId + "-input"}
+      onChange={handleChange}
+      disabled={validationResult[testId]}
+    />
+  );
 };
 
 const StyledInput = styled.input`
