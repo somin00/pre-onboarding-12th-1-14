@@ -1,3 +1,9 @@
+import { AuthForm } from "../components/common/AuthForm";
+
 export const Signin = () => {
-  return <div>signin</div>;
+  return (
+    <div>
+      <AuthForm />
+    </div>
+  );
 };
