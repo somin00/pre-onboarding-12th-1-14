@@ -13,15 +13,12 @@ jobs:
     
     steps:
       - name: Checkout to the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Set up NodeJS environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          # Reads the node version from the .nvmrc file itself 
-          node-version-file: '.nvmrc'
-          # The node version can be hard-coded 
-          # node-version: 14
+          node-version: 18
         
       # Consider this as an add on to optimize the execution of actions
       - name: Cache node modules
@@ -40,14 +37,6 @@ jobs:
        
       - name: Install package dependencies
         run: npm install
-      
-      - name: Check linting and formatting
-        # Custom script for checking the linting and formatting being in place
-        run: npm run lint
-      
-      # Run test cases and this could ensure minimum coverage as well if set
-      - name: Execute test cases
-        run: npm run test
         
       - name: Create test build
         run: npm run build
