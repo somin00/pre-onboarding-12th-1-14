@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 export const Home = () => {
   return (
     <StyledMain>
+      Home
       <Outlet />
     </StyledMain>
   );

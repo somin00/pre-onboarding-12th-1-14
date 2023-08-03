@@ -6,19 +6,20 @@ import { Home } from "../pages/Home";
 
 export const router = createBrowserRouter([
   {
-    path: "/wanted-pre-onboarding-frontend",
+    path: "/",
     element: <Home />,
+    id: "root",
     children: [
       {
-        path: "signup",
+        path: "/signup",
         element: <Signup />,
       },
       {
-        path: "signin",
+        path: "/signin",
         element: <Signin />,
       },
       {
-        path: "todo",
+        path: "/todo",
         element: <TodoList />,
       },
     ],
