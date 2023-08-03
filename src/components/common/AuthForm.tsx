@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { FC, PropsWithChildren } from "react";
+import { FC, FormEventHandler, PropsWithChildren } from "react";
 
 type Props = {
   title: string;
   buttonTestId: "signup-button" | "signin-button";
+  handleSubmit: FormEventHandler<HTMLFormElement>;
 };
 
 const FORM_WIDTH = 400;
@@ -13,12 +14,13 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
   children,
   title,
   buttonTestId,
+  handleSubmit,
 }) => {
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <h1>{title}</h1>
       {children}
-      <StyledSubmitButton data-testid={buttonTestId} />
+      <StyledSubmitButton type="submit" data-testid={buttonTestId} />
     </StyledForm>
   );
 };
