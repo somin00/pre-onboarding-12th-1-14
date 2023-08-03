@@ -4,7 +4,7 @@ import { AuthInput } from "../components/common/AuthInput";
 export const Signin = () => {
   return (
     <section>
-      <AuthForm>
+      <AuthForm title="로그인">
         <AuthInput type="email" />
         <AuthInput type="password" />
       </AuthForm>

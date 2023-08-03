@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
 import { FC, PropsWithChildren } from "react";
 
+type Props = {
+  title: string;
+};
+
 const FORM_WIDTH = 400;
 const FORM_PADDING = 30;
 
-export const AuthForm: FC<PropsWithChildren> = ({ children }) => {
+export const AuthForm: FC<PropsWithChildren<Props>> = ({ children, title }) => {
   return (
     <StyledForm>
+      <h1>{title}</h1>
       {children}
       <StyledSubmitButton />
     </StyledForm>
