@@ -5,8 +5,8 @@ export const Signin = () => {
   return (
     <section>
       <AuthForm>
-        <AuthInput />
-        <AuthInput />
+        <AuthInput type="email" />
+        <AuthInput type="password" />
       </AuthForm>
     </section>
   );

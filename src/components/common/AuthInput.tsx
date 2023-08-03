@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
+import { FC, HTMLInputTypeAttribute } from "react";
 
-export const AuthInput = () => {
-  return <StyledInput />;
+type Props = {
+  type: HTMLInputTypeAttribute;
+};
+
+export const AuthInput: FC<Props> = ({ type }) => {
+  return <StyledInput type={type} />;
 };
 
 const StyledInput = styled.input`
