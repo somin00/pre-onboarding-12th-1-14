@@ -40,7 +40,12 @@ export const Todo = () => {
   };
 
   return (
-    <section>
+    <section
+      style={{
+        display: "grid",
+        gap: "10px",
+      }}
+    >
       <h1>Todo Form</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" data-testid="new-todo-input" name="todo" />
