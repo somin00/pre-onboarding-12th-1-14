@@ -1,12 +1,16 @@
 import type { FC, PropsWithChildren } from "react";
 import styled from "@emotion/styled";
 
-import type { TestId, ValidationResult } from "../../pages/Signin";
 import type {
   HandleSubmit,
   UseFormValidation,
+  ValidationResult,
 } from "../../hooks/useInputValidation";
 
+export type TestId = {
+  input: "email" | "password";
+  button: "signin" | "signup";
+};
 type Props = {
   title: string;
   testId: TestId["button"];

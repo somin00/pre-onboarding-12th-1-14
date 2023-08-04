@@ -7,8 +7,8 @@ import {
 } from "react";
 import styled from "@emotion/styled";
 
-import type { TestId, ValidationResult } from "../../pages/Signin";
-import { testRegex } from "../../hooks/useInputValidation";
+import { TestId } from "./AuthForm";
+import { testRegex, ValidationResult } from "../../hooks/useInputValidation";
 
 type Props = {
   type: HTMLInputTypeAttribute;

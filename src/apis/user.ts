@@ -1,5 +1,5 @@
 import { axiosInstance } from "./config";
-import { TestId } from "../pages/Signin";
+import { TestId } from "../components/common/AuthForm";
 
 const signup = (data: Record<TestId["input"], string>) => {
   return axiosInstance({

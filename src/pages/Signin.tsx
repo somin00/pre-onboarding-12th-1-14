@@ -1,23 +1,10 @@
-import { FormEventHandler } from "react";
-
 import { AuthForm } from "../components/common/AuthForm";
 import { AuthInput } from "../components/common/AuthInput";
 import { useFormValidation } from "../hooks/useInputValidation";
 
-export type TestId = {
-  input: "email" | "password";
-  button: "signin" | "signup";
-};
-export type ValidationResult = Record<TestId["input"], boolean>;
-
 export const Signin = () => {
-  const { isBtnDisabled, validationResult, setValidationResult } =
+  const { handleSubmit, isBtnDisabled, validationResult, setValidationResult } =
     useFormValidation();
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    console.log("submit!");
-  };
 
   return (
     <section>

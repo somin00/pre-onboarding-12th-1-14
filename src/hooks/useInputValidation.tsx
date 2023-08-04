@@ -1,12 +1,13 @@
 import { FormEvent, useEffect, useState } from "react";
-import { TestId, ValidationResult } from "../pages/Signin";
 import { userApis } from "../apis/user";
 import { useNavigate } from "react-router-dom";
+import { TestId } from "../components/common/AuthForm";
 
 type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
 export type UseFormValidation = typeof useFormValidation;
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, path: T) => void;
+export type ValidationResult = Record<TestId["input"], boolean>;
 
 const authRegex = {
   email: /^(.+)@(.+)$/,
