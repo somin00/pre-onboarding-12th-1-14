@@ -5,14 +5,14 @@ import { TodoList } from "../components/TodoList";
 import { Home } from "../pages/Home";
 
 export const pathsObj = {
-  signup: "signup",
-  signin: "signin",
-  todo: "todo",
+  signup: "/signup",
+  signin: "/signin",
+  todo: "/todo",
 } as const;
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <Home />,
     children: [
       {
