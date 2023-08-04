@@ -1,15 +1,11 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { pathsObj } from "../router/router";
 import { todoApis, TodoItem, todoStatusObj } from "../apis/todo";
-import styled from "@emotion/styled";
+import { Todo } from "../components/Todo";
 
-export const Todo = () => {
+export const TodoList = () => {
   const navigate = useNavigate();
 
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -73,8 +69,6 @@ export const Todo = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(todos);
-
   return (
     <section
       style={{
@@ -93,32 +87,14 @@ export const Todo = () => {
       <h1>Todo List</h1>
       <ul>
         {todos.map((todo, idx) => (
-          <StyledTodoItem key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                onChange={() => handleUpdate(todo, idx)}
-                checked={todo.isCompleted}
-              />
-              <span>{todo.todo}</span>
-            </label>
-            <div>
-              <button data-testid="modify-button">수정</button>
-              <button
-                data-testid="delete-button"
-                onClick={() => handleDelete(todo.id, idx)}
-              >
-                삭제
-              </button>
-            </div>
-          </StyledTodoItem>
+          <Todo
+            todo={todo}
+            idx={idx}
+            handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
+          />
         ))}
       </ul>
     </section>
   );
 };
-
-const StyledTodoItem = styled.li`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-`;
