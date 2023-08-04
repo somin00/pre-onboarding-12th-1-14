@@ -39,7 +39,23 @@ const createTodo = (todo: string) => {
   });
 };
 
+const updateTodo = (
+  id: number,
+  payload: { todo: string; isCompleted: boolean },
+) => {
+  return axiosInstance({
+    url: `todos/${id}`,
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      "Content-Type": "application/json",
+    },
+    data: payload,
+  });
+};
+
 export const todoApis = {
   getTodos,
   createTodo,
+  updateTodo,
 };

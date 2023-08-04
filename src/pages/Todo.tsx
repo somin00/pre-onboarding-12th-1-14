@@ -1,4 +1,9 @@
-import { FormEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { pathsObj } from "../router/router";
 import { todoApis, TodoItem, todoStatusObj } from "../apis/todo";
@@ -39,6 +44,21 @@ export const Todo = () => {
     }
   };
 
+  const updateTodoStatus = (data: TodoItem, idx: number) => {
+    const { id, todo, isCompleted } = data;
+    todoApis
+      .updateTodo(id, { todo, isCompleted: !isCompleted })
+      .then((res) => {
+        const { data, status } = res;
+        if (status === todoStatusObj.update) {
+          const newState = [...todos];
+          newState[idx] = data;
+          setTodos(newState);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <section
       style={{
@@ -56,10 +76,14 @@ export const Todo = () => {
 
       <h1>Todo List</h1>
       <ul>
-        {todos.map((todo) => (
+        {todos.map((todo, idx) => (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={() => updateTodoStatus(todo, idx)}
+                checked={todo.isCompleted}
+              />
               <span>{todo.todo}</span>
             </label>
           </li>
