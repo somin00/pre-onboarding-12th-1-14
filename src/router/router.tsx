@@ -4,22 +4,27 @@ import { Signin } from "../pages/Signin";
 import { TodoList } from "../components/TodoList";
 import { Home } from "../pages/Home";
 
+export const pathsObj = {
+  signup: "signup",
+  signin: "signin",
+  todo: "todo",
+} as const;
+
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    id: "root",
     children: [
       {
-        path: "signup",
+        path: pathsObj.signup,
         element: <Signup />,
       },
       {
-        path: "signin",
+        path: pathsObj.signin,
         element: <Signin />,
       },
       {
-        path: "todo",
+        path: pathsObj.todo,
         element: <TodoList />,
       },
     ],

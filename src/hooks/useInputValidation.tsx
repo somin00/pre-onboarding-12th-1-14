@@ -1,10 +1,12 @@
 import { FormEvent, useEffect, useState } from "react";
-import { userApis } from "../apis/user";
+import { statusCodeObj, userApis } from "../apis/user";
 import { useNavigate } from "react-router-dom";
 import { TestId } from "../components/common/AuthForm";
+import { pathsObj } from "../router/router";
 
 type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
+
 export type UseFormValidation = typeof useFormValidation;
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, path: T) => void;
 export type ValidationResult = Record<TestId["input"], boolean>;
@@ -51,9 +53,13 @@ export const useFormValidation = () => {
     userApis[path](payload)
       .then((res) => {
         const { data, status } = res;
-        localStorage.setItem("access_token", data.access_token);
-
-        if (status === 201) navigate("/signin");
+        if (status === statusCodeObj[path]) {
+          if (path === "signin") {
+            localStorage.setItem("access_token", data.access_token);
+            navigate(`/${pathsObj.todo}`);
+          }
+          if (path === "signup") navigate(`/${pathsObj.signin}`);
+        }
       })
       .catch((err) => console.log(err));
   };
