@@ -37,7 +37,6 @@ export const Todo = () => {
         .createTodo(payload)
         .then((res) => {
           const { data, status } = res;
-
           if (status === todoStatusObj.create)
             setTodos((prev) => [...prev, data]);
         })
@@ -45,7 +44,7 @@ export const Todo = () => {
     }
   };
 
-  const updateTodoStatus = (data: TodoItem, idx: number) => {
+  const handleUpdate = (data: TodoItem, idx: number) => {
     const { id, todo, isCompleted } = data;
     todoApis
       .updateTodo(id, { todo, isCompleted: !isCompleted })
@@ -59,6 +58,22 @@ export const Todo = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleDelete = (id: number, idx: number) => {
+    todoApis
+      .deleteTodo(id)
+      .then((res) => {
+        const { status } = res;
+        if (status === todoStatusObj.delete) {
+          let newState = [...todos];
+          delete newState[idx];
+          setTodos(newState.filter((todo) => todo !== undefined));
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  console.log(todos);
 
   return (
     <section
@@ -82,14 +97,19 @@ export const Todo = () => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => updateTodoStatus(todo, idx)}
+                onChange={() => handleUpdate(todo, idx)}
                 checked={todo.isCompleted}
               />
               <span>{todo.todo}</span>
             </label>
             <div>
               <button data-testid="modify-button">수정</button>
-              <button data-testid="delete-button">삭제</button>
+              <button
+                data-testid="delete-button"
+                onClick={() => handleDelete(todo.id, idx)}
+              >
+                삭제
+              </button>
             </div>
           </StyledTodoItem>
         ))}
