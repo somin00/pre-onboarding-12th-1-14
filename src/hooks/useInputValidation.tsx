@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { statusCodeObj, userApis } from "../apis/user";
+import { authStatusCodeObj, userApis } from "../apis/user";
 import { useNavigate } from "react-router-dom";
 import { TestId } from "../components/common/AuthForm";
 import { pathsObj } from "../router/router";
@@ -53,7 +53,7 @@ export const useFormValidation = () => {
     userApis[path](payload)
       .then((res) => {
         const { data, status } = res;
-        if (status === statusCodeObj[path]) {
+        if (status === authStatusCodeObj[path]) {
           if (path === "signin") {
             localStorage.setItem("access_token", data.access_token);
             navigate(pathsObj.todo);

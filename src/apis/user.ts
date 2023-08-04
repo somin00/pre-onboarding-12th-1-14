@@ -1,7 +1,7 @@
 import { axiosInstance } from "./config";
 import { TestId } from "../components/common/AuthForm";
 
-export const statusCodeObj = {
+export const authStatusCodeObj = {
   signup: 201,
   signin: 200,
 };
