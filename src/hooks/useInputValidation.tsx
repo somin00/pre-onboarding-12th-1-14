@@ -50,9 +50,10 @@ export const useFormValidation = () => {
 
     userApis[path](payload)
       .then((res) => {
-        const { status } = res;
+        const { data, status } = res;
+        localStorage.setItem("access_token", data.access_token);
+
         if (status === 201) navigate("/signin");
-        console.log(status);
       })
       .catch((err) => console.log(err));
   };
