@@ -11,7 +11,7 @@ type Props = {
 
 export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
   return (
-    <StyledTodoItem key={todo.id}>
+    <StyledTodoItem>
       <label>
         <input
           type="checkbox"

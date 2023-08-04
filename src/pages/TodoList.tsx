@@ -88,6 +88,7 @@ export const TodoList = () => {
       <ul>
         {todos.map((todo, idx) => (
           <Todo
+            key={todo.id}
             todo={todo}
             idx={idx}
             handleUpdate={handleUpdate}
