@@ -4,7 +4,7 @@ import { TestId } from "../components/common/AuthForm";
 export const authStatusCodeObj = {
   signup: 201,
   signin: 200,
-};
+} as const;
 
 const signup = (data: Record<TestId["input"], string>) => {
   return axiosInstance({
