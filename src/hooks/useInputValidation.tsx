@@ -48,18 +48,13 @@ export const useFormValidation = () => {
       string
     >;
 
-    console.log(payload, path);
-
-    path === "signup" &&
-      userApis[path](payload)
-        .then((res) => {
-          const { status } = res;
-          if (status === 201) navigate("/signin");
-          console.log(status);
-        })
-        .catch((err) => console.log(err));
-
-    console.log("submit!");
+    userApis[path](payload)
+      .then((res) => {
+        const { status } = res;
+        if (status === 201) navigate("/signin");
+        console.log(status);
+      })
+      .catch((err) => console.log(err));
   };
 
   return {

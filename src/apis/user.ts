@@ -12,6 +12,18 @@ const signup = (data: Record<TestId["input"], string>) => {
   });
 };
 
+const signin = (data: Record<TestId["input"], string>) => {
+  return axiosInstance({
+    url: "auth/signin",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data,
+  });
+};
+
 export const userApis = {
   signup,
+  signin,
 };
