@@ -30,7 +30,12 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
         {updateMode ? (
           <>
             <button data-testid="submit-button">제출</button>
-            <button data-testid="cancel-button">취소</button>
+            <button
+              data-testid="cancel-button"
+              onClick={() => setUpdateMode(false)}
+            >
+              취소
+            </button>
           </>
         ) : (
           <>
