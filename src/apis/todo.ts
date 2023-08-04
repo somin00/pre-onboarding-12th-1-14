@@ -54,8 +54,19 @@ const updateTodo = (
   });
 };
 
+const deleteTodo = (id: number) => {
+  return axiosInstance({
+    url: `todos/${id}`,
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  });
+};
+
 export const todoApis = {
   getTodos,
   createTodo,
   updateTodo,
+  deleteTodo,
 };
