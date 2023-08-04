@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
-import { FC, FormEventHandler, PropsWithChildren } from "react";
-import { TestId } from "../../pages/Signin";
+import type { FC, FormEventHandler, PropsWithChildren } from "react";
+import type { TestId, ValidationResult } from "../../pages/Signin";
+import type { UseFormValidation } from "../../hooks/useInputValidation";
 
 type Props = {
   title: string;
   testId: TestId["button"];
   handleSubmit: FormEventHandler<HTMLFormElement>;
+  isBtnDisabled: ReturnType<UseFormValidation>["isBtnDisabled"];
+  validationResult: ValidationResult;
 };
 
 const FORM_WIDTH = 400;
@@ -16,12 +19,18 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
   title,
   testId,
   handleSubmit,
+  isBtnDisabled,
 }) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h1>{title}</h1>
       {children}
-      <StyledSubmitButton type="submit" data-testid={testId + "-button"}>
+      <StyledSubmitButton
+        type="submit"
+        data-testid={testId + "-button"}
+        disabled={!isBtnDisabled}
+        isActive={isBtnDisabled}
+      >
         {title}
       </StyledSubmitButton>
     </StyledForm>
@@ -39,7 +48,7 @@ const StyledForm = styled.form`
   padding: ${FORM_PADDING}px;
   border: 1px lightgray solid;
 `;
-const StyledSubmitButton = styled.button`
+const StyledSubmitButton = styled.button<{ isActive: boolean }>`
   width: ${FORM_WIDTH}px;
   height: 50px;
 
@@ -48,10 +57,11 @@ const StyledSubmitButton = styled.button`
 
   color: white;
   border: none;
-  cursor: pointer;
-  background-color: dodgerblue;
+  background-color: ${(props) => (props.isActive ? "dodgerblue" : "lightgrey")};
 
+  ${(props) => (props.isActive ? "" : null)}
   &:hover {
     background-color: #0074e8;
+    cursor: pointer;
   }
 `;
