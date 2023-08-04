@@ -56,9 +56,9 @@ export const useFormValidation = () => {
         if (status === statusCodeObj[path]) {
           if (path === "signin") {
             localStorage.setItem("access_token", data.access_token);
-            navigate(`/${pathsObj.todo}`);
+            navigate(pathsObj.todo);
           }
-          if (path === "signup") navigate(`/${pathsObj.signin}`);
+          if (path === "signup") navigate(pathsObj.signin);
         }
       })
       .catch((err) => console.log(err));
