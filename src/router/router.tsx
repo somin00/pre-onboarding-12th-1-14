@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Signup } from "../pages/Signup";
 import { Signin } from "../pages/Signin";
-import { TodoList } from "../components/TodoList";
 import { Home } from "../pages/Home";
+import { Todo } from "../pages/Todo";
 
 export const pathsObj = {
   signup: "/signup",
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: pathsObj.todo,
-        element: <TodoList />,
+        element: <Todo />,
       },
     ],
   },
