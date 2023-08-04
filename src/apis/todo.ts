@@ -1,6 +1,13 @@
 import { axiosInstance } from "./config";
 import { AxiosResponse } from "axios";
 
+export const todoStatusObj = {
+  get: 200,
+  create: 201,
+  update: 200,
+  delete: 204,
+} as const;
+
 export type TodoItem = {
   id: number;
   todo: string;
@@ -18,6 +25,21 @@ const getTodos = (): Promise<AxiosResponse<TodoItem[]>> => {
   });
 };
 
+const createTodo = (todo: string) => {
+  return axiosInstance({
+    url: "todos",
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      "Content-Type": "application/json",
+    },
+    data: {
+      todo,
+    },
+  });
+};
+
 export const todoApis = {
   getTodos,
+  createTodo,
 };
