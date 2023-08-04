@@ -1,14 +1,18 @@
+import type { FC, PropsWithChildren } from "react";
 import styled from "@emotion/styled";
-import type { FC, FormEventHandler, PropsWithChildren } from "react";
+
 import type { TestId, ValidationResult } from "../../pages/Signin";
-import type { UseFormValidation } from "../../hooks/useInputValidation";
+import type {
+  HandleSubmit,
+  UseFormValidation,
+} from "../../hooks/useInputValidation";
 
 type Props = {
   title: string;
   testId: TestId["button"];
-  handleSubmit: FormEventHandler<HTMLFormElement>;
-  isBtnDisabled: ReturnType<UseFormValidation>["isBtnDisabled"];
   validationResult: ValidationResult;
+  handleSubmit: HandleSubmit<TestId["button"]>;
+  isBtnDisabled: ReturnType<UseFormValidation>["isBtnDisabled"];
 };
 
 const FORM_WIDTH = 400;
@@ -22,14 +26,14 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
   isBtnDisabled,
 }) => {
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={(e) => handleSubmit(e, testId)}>
       <h1>{title}</h1>
       {children}
       <StyledSubmitButton
         type="submit"
-        data-testid={testId + "-button"}
-        disabled={!isBtnDisabled}
         isActive={isBtnDisabled}
+        disabled={!isBtnDisabled}
+        data-testid={testId + "-button"}
       >
         {title}
       </StyledSubmitButton>

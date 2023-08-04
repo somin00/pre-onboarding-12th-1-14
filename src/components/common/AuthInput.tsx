@@ -8,7 +8,7 @@ import {
 import styled from "@emotion/styled";
 
 import type { TestId, ValidationResult } from "../../pages/Signin";
-import { useFormValidation } from "../../hooks/useInputValidation";
+import { testRegex } from "../../hooks/useInputValidation";
 
 type Props = {
   type: HTMLInputTypeAttribute;
@@ -17,7 +17,6 @@ type Props = {
 };
 
 export const AuthInput: FC<Props> = ({ type, testId, setValidationResult }) => {
-  const { testRegex } = useFormValidation();
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValidationResult((prev) => ({
       ...prev,
@@ -28,6 +27,7 @@ export const AuthInput: FC<Props> = ({ type, testId, setValidationResult }) => {
   return (
     <StyledInput
       type={type}
+      name={testId}
       data-testid={testId + "-input"}
       onChange={handleChange}
     />
