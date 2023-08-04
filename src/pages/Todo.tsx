@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { pathsObj } from "../router/router";
 import { todoApis, TodoItem, todoStatusObj } from "../apis/todo";
+import styled from "@emotion/styled";
 
 export const Todo = () => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const Todo = () => {
       <h1>Todo List</h1>
       <ul>
         {todos.map((todo, idx) => (
-          <li key={todo.id}>
+          <StyledTodoItem key={todo.id}>
             <label>
               <input
                 type="checkbox"
@@ -86,9 +87,18 @@ export const Todo = () => {
               />
               <span>{todo.todo}</span>
             </label>
-          </li>
+            <div>
+              <button data-testid="modify-button">수정</button>
+              <button data-testid="delete-button">삭제</button>
+            </div>
+          </StyledTodoItem>
         ))}
       </ul>
     </section>
   );
 };
+
+const StyledTodoItem = styled.li`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+`;
