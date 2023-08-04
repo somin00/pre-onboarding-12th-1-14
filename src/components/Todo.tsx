@@ -1,27 +1,38 @@
 import styled from "@emotion/styled";
-import { TodoItem } from "../apis/todo";
-import { FC, useState } from "react";
+import type { TodoItem } from "../apis/todo";
+import { ChangeEvent, MouseEvent, FC, useState } from "react";
+
+export type HandleUpdate = (
+  e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
+  todo: TodoItem,
+  idx: number
+) => void;
 
 type Props = {
   todo: TodoItem;
   idx: number;
-  handleUpdate: (todo: TodoItem, idx: number) => void;
+  handleUpdate: HandleUpdate;
   handleDelete: (id: number, idx: number) => void;
 };
 
 export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
   const [updateMode, setUpdateMode] = useState(false);
+  const [todoState, setTodoState] = useState(todo.todo);
 
   return (
     <StyledTodoItem>
       <label>
         <input
           type="checkbox"
-          onChange={() => handleUpdate(todo, idx)}
+          onChange={(e) => handleUpdate(e, todo, idx)}
           checked={todo.isCompleted}
         />
         {updateMode ? (
-          <input data-testid="modify-input" defaultValue={todo.todo} />
+          <input
+            data-testid="modify-input"
+            defaultValue={todo.todo}
+            onChange={(e) => setTodoState(e.currentTarget.value)}
+          />
         ) : (
           <span>{todo.todo}</span>
         )}
@@ -29,7 +40,16 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
       <div>
         {updateMode ? (
           <>
-            <button data-testid="submit-button">제출</button>
+            <button
+              type="button"
+              data-testid="submit-button"
+              onClick={(e) => {
+                handleUpdate(e, { ...todo, todo: todoState }, idx);
+                setUpdateMode(false);
+              }}
+            >
+              제출
+            </button>
             <button
               data-testid="cancel-button"
               onClick={() => setUpdateMode(false)}
