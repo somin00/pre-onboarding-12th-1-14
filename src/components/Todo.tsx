@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { TodoItem } from "../apis/todo";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 type Props = {
   todo: TodoItem;
@@ -10,6 +10,8 @@ type Props = {
 };
 
 export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
+  const [updateMode, setUpdateMode] = useState(false);
+
   return (
     <StyledTodoItem>
       <label>
@@ -18,16 +20,34 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
           onChange={() => handleUpdate(todo, idx)}
           checked={todo.isCompleted}
         />
-        <span>{todo.todo}</span>
+        {updateMode ? (
+          <input data-testid="modify-input" defaultValue={todo.todo} />
+        ) : (
+          <span>{todo.todo}</span>
+        )}
       </label>
       <div>
-        <button data-testid="modify-button">수정</button>
-        <button
-          data-testid="delete-button"
-          onClick={() => handleDelete(todo.id, idx)}
-        >
-          삭제
-        </button>
+        {updateMode ? (
+          <>
+            <button data-testid="submit-button">제출</button>
+            <button data-testid="cancel-button">취소</button>
+          </>
+        ) : (
+          <>
+            <button
+              data-testid="modify-button"
+              onClick={() => setUpdateMode(true)}
+            >
+              수정
+            </button>
+            <button
+              data-testid="delete-button"
+              onClick={() => handleDelete(todo.id, idx)}
+            >
+              삭제
+            </button>
+          </>
+        )}
       </div>
     </StyledTodoItem>
   );
