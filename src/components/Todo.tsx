@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import type { TodoItem } from "../apis/todo";
-import { ChangeEvent, MouseEvent, FC, useState } from "react";
+import styled from '@emotion/styled';
+import type { TodoItem } from '../apis/todo';
+import { ChangeEvent, MouseEvent, FC, useState } from 'react';
 
 export type HandleUpdate = (
   e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
   todo: TodoItem,
-  idx: number
+  idx: number,
 ) => void;
 
 type Props = {
@@ -24,14 +24,14 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
       <label>
         <input
           type="checkbox"
-          onChange={(e) => handleUpdate(e, todo, idx)}
+          onChange={e => handleUpdate(e, todo, idx)}
           checked={todo.isCompleted}
         />
         {updateMode ? (
           <input
             data-testid="modify-input"
             defaultValue={todo.todo}
-            onChange={(e) => setTodoState(e.currentTarget.value)}
+            onChange={e => setTodoState(e.currentTarget.value)}
           />
         ) : (
           <span>{todo.todo}</span>
@@ -43,32 +43,23 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
             <button
               type="button"
               data-testid="submit-button"
-              onClick={(e) => {
+              onClick={e => {
                 handleUpdate(e, { ...todo, todo: todoState }, idx);
                 setUpdateMode(false);
               }}
             >
               제출
             </button>
-            <button
-              data-testid="cancel-button"
-              onClick={() => setUpdateMode(false)}
-            >
+            <button data-testid="cancel-button" onClick={() => setUpdateMode(false)}>
               취소
             </button>
           </>
         ) : (
           <>
-            <button
-              data-testid="modify-button"
-              onClick={() => setUpdateMode(true)}
-            >
+            <button data-testid="modify-button" onClick={() => setUpdateMode(true)}>
               수정
             </button>
-            <button
-              data-testid="delete-button"
-              onClick={() => handleDelete(todo.id, idx)}
-            >
+            <button data-testid="delete-button" onClick={() => handleDelete(todo.id, idx)}>
               삭제
             </button>
           </>

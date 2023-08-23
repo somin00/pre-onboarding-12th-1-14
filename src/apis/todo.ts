@@ -1,5 +1,5 @@
-import { axiosInstance } from "./config";
-import { AxiosResponse } from "axios";
+import { axiosInstance } from './config';
+import { AxiosResponse } from 'axios';
 
 export const todoStatusObj = {
   get: 200,
@@ -17,21 +17,21 @@ export type TodoItem = {
 
 const getTodos = (): Promise<AxiosResponse<TodoItem[]>> => {
   return axiosInstance({
-    url: "todos",
-    method: "GET",
+    url: 'todos',
+    method: 'GET',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     },
   });
 };
 
 const createTodo = (todo: string) => {
   return axiosInstance({
-    url: "todos",
-    method: "POST",
+    url: 'todos',
+    method: 'POST',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json',
     },
     data: {
       todo,
@@ -39,16 +39,13 @@ const createTodo = (todo: string) => {
   });
 };
 
-const updateTodo = (
-  id: number,
-  payload: { todo: string; isCompleted: boolean },
-) => {
+const updateTodo = (id: number, payload: { todo: string; isCompleted: boolean }) => {
   return axiosInstance({
     url: `todos/${id}`,
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json',
     },
     data: payload,
   });
@@ -57,9 +54,9 @@ const updateTodo = (
 const deleteTodo = (id: number) => {
   return axiosInstance({
     url: `todos/${id}`,
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     },
   });
 };

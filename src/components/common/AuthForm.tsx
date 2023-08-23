@@ -1,22 +1,22 @@
-import type { FC, PropsWithChildren } from "react";
-import styled from "@emotion/styled";
+import type { FC, PropsWithChildren } from 'react';
+import styled from '@emotion/styled';
 
 import type {
   HandleSubmit,
   UseFormValidation,
   ValidationResult,
-} from "../../hooks/useInputValidation";
+} from '../../hooks/useInputValidation';
 
 export type TestId = {
-  input: "email" | "password";
-  button: "signin" | "signup";
+  input: 'email' | 'password';
+  button: 'signin' | 'signup';
 };
 type Props = {
   title: string;
-  testId: TestId["button"];
+  testId: TestId['button'];
   validationResult: ValidationResult;
-  handleSubmit: HandleSubmit<TestId["button"]>;
-  isBtnDisabled: ReturnType<UseFormValidation>["isBtnDisabled"];
+  handleSubmit: HandleSubmit<TestId['button']>;
+  isBtnDisabled: ReturnType<UseFormValidation>['isBtnDisabled'];
 };
 
 const FORM_WIDTH = 400;
@@ -30,14 +30,14 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
   isBtnDisabled,
 }) => {
   return (
-    <StyledForm onSubmit={(e) => handleSubmit(e, testId)}>
+    <StyledForm onSubmit={e => handleSubmit(e, testId)}>
       <h1>{title}</h1>
       {children}
       <StyledSubmitButton
         type="submit"
         isActive={isBtnDisabled}
         disabled={!isBtnDisabled}
-        data-testid={testId + "-button"}
+        data-testid={testId + '-button'}
       >
         {title}
       </StyledSubmitButton>
@@ -65,9 +65,9 @@ const StyledSubmitButton = styled.button<{ isActive: boolean }>`
 
   color: white;
   border: none;
-  background-color: ${(props) => (props.isActive ? "dodgerblue" : "lightgrey")};
+  background-color: ${props => (props.isActive ? 'dodgerblue' : 'lightgrey')};
 
-  ${(props) => (props.isActive ? "" : null)}
+  ${props => (props.isActive ? '' : null)}
   &:hover {
     background-color: #0074e8;
     cursor: pointer;

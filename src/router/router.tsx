@@ -1,18 +1,18 @@
-import { createBrowserRouter } from "react-router-dom";
-import { Signup } from "../pages/Signup";
-import { Signin } from "../pages/Signin";
-import { Home } from "../pages/Home";
-import { TodoList } from "../pages/TodoList";
+import { createBrowserRouter } from 'react-router-dom';
+import { Signup } from '../pages/Signup';
+import { Signin } from '../pages/Signin';
+import { Home } from '../pages/Home';
+import { TodoList } from '../pages/TodoList';
 
 export const pathsObj = {
-  signup: "/signup",
-  signin: "/signin",
-  todo: "/todo",
+  signup: '/signup',
+  signin: '/signin',
+  todo: '/todo',
 } as const;
 
 export const router = createBrowserRouter([
   {
-    path: "",
+    path: '',
     element: <Home />,
     children: [
       {

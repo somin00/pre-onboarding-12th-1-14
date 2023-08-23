@@ -1,35 +1,34 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { pathsObj } from "../router/router";
-import { todoApis, todoStatusObj } from "../apis/todo";
-import { Todo } from "../components/Todo";
-import { useTodo } from "../hooks/useTodo";
+import { pathsObj } from '../router/router';
+import { todoApis, todoStatusObj } from '../apis/todo';
+import { Todo } from '../components/Todo';
+import { useTodo } from '../hooks/useTodo';
 
 export const TodoList = () => {
   const navigate = useNavigate();
-  const { todos, setTodos, handleSubmit, handleUpdate, handleDelete } =
-    useTodo();
+  const { todos, setTodos, handleSubmit, handleUpdate, handleDelete } = useTodo();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("access_token");
+    const accessToken = localStorage.getItem('access_token');
     if (!accessToken) navigate(pathsObj.signin);
     else {
       todoApis
         .getTodos()
-        .then((res) => {
+        .then(res => {
           const { data, status } = res;
           if (status === todoStatusObj.get) setTodos(data);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     }
   }, []);
 
   return (
     <section
       style={{
-        display: "grid",
-        gap: "10px",
+        display: 'grid',
+        gap: '10px',
       }}
     >
       <h1>Todo Form</h1>
