@@ -1,5 +1,5 @@
-import { AuthForm } from '../components/common/AuthForm';
-import { AuthInput } from '../components/common/AuthInput';
+import { AuthForm } from '../components/auth/AuthForm';
+import { AuthInput } from '../components/auth/AuthInput';
 import { useFormValidation } from '../hooks/useInputValidation';
 
 export const Signin = () => {
