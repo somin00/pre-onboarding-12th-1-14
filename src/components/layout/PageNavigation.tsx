@@ -29,6 +29,7 @@ const PageNavigation = () => {
 
 const StyledList = styled.ul`
   display: flex;
+  padding: 1rem;
   & li {
     margin-left: 1rem;
   }
@@ -38,7 +39,7 @@ const StyledList = styled.ul`
   }
   & a:hover,
   & a.active {
-    color: steelblue;
+    color: #0074e8;
     text-decoration: underline;
   }
 `;
