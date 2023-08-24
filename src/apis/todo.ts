@@ -31,7 +31,6 @@ const createTodo = (todo: string) => {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-      // 'Content-Type': 'application/json',
     },
     data: {
       todo,
@@ -45,7 +44,6 @@ const updateTodo = (id: number, payload: { todo: string; isCompleted: boolean })
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-      // 'Content-Type': 'application/json',
     },
     data: payload,
   });
