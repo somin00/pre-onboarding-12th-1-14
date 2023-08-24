@@ -14,8 +14,8 @@ export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void
 export type ValidationResult = Record<TestId['input'], boolean>;
 
 const authRegex = {
-  email: /^(.+)@(.+)$/,
-  password: /^.{9,}$/,
+  email: /@/,
+  password: /^.{8,}$/,
 };
 
 export const testRegex: TestRegex = (type, value) => authRegex[type].test(value);
