@@ -1,5 +1,6 @@
-import { axiosInstance } from './config';
 import { AxiosResponse } from 'axios';
+
+import { axiosInstance } from './config';
 
 export const todoStatusObj = {
   get: 200,

@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Signup } from '../pages/Signup';
-import { Signin } from '../pages/Signin';
+
 import { Home } from '../pages/Home';
+import { Signin } from '../pages/Signin';
+import { Signup } from '../pages/Signup';
 import { TodoList } from '../pages/TodoList';
 
 export const pathsObj = {

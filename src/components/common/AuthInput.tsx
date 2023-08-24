@@ -1,8 +1,10 @@
 import { FC, ChangeEventHandler, Dispatch, HTMLInputTypeAttribute, SetStateAction } from 'react';
+
 import styled from '@emotion/styled';
 
-import { TestId } from './AuthForm';
 import { testRegex, ValidationResult } from '../../hooks/useInputValidation';
+
+import { TestId } from './AuthForm';
 
 type Props = {
   type: HTMLInputTypeAttribute;

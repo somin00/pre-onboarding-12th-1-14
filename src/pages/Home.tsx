@@ -1,6 +1,8 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import styled from '@emotion/styled';
 import { useEffect } from 'react';
+
+import styled from '@emotion/styled';
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import { pathsObj } from '../router/router';
 
 export const Home = () => {
