@@ -33,19 +33,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
-/*
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    errorElement: <ErrorBoundary />,
-    children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/signup', element: <SignupPage /> },
-      { path: '/signin', element: <SigninPage /> },
-      { path: '/todo', element: <TodoPage /> },
-    ],
-  },
-]);
-*/
