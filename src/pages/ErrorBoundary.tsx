@@ -1,10 +1,17 @@
+import styled from '@emotion/styled';
+
 const ErrorBoundary = () => {
   return (
-    <main>
-      <h1>404</h1>
-      <p>404 Could not find this page!</p>
-    </main>
+    <StyledMain>
+      <p>404 | 페이지를 찾을 수 없습니다.</p>
+    </StyledMain>
   );
 };
 
 export default ErrorBoundary;
+
+const StyledMain = styled.main`
+  display: grid;
+  place-items: center;
+  height: 100vh;
+`;
