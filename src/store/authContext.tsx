@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
 
   const handleLogin = (enterdUserData: string): void => {
     localStorage.setItem('access_token', enterdUserData);
-    setAccessToken(JSON.parse(enterdUserData));
+    setAccessToken(enterdUserData);
   };
 
   return (

@@ -1,10 +1,11 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import { authStatusCodeObj, userApis } from '../apis/user';
 import { TestId } from '../components/auth/AuthForm';
 import { pathsObj } from '../router/router';
+import AuthContext from '../store/authContext';
 
 type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
@@ -22,6 +23,7 @@ export const testRegex: TestRegex = (type, value) => authRegex[type].test(value)
 
 export const useFormValidation = () => {
   const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
 
   const [validationResult, setValidationResult] = useState<ValidationResult>({
     email: false,
@@ -52,7 +54,7 @@ export const useFormValidation = () => {
         const { data, status } = res;
         if (status === authStatusCodeObj[path]) {
           if (path === 'signin') {
-            localStorage.setItem('access_token', data.access_token);
+            ctx.onLogin(data.access_token);
             navigate(pathsObj.todo);
           }
           if (path === 'signup') navigate(pathsObj.signin);
