@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import PageNavigation from '../components/PageNavigation';
 import { pathsObj } from '../router/router';
 
 export const Home = () => {
@@ -15,6 +16,7 @@ export const Home = () => {
 
   return (
     <StyledMain>
+      <PageNavigation />
       <Outlet />
     </StyledMain>
   );
