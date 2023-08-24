@@ -6,7 +6,7 @@ import { todoApis, todoStatusObj } from '../apis/todo';
 import { Todo } from '../components/Todo';
 import { useTodo } from '../hooks/useTodo';
 import { pathsObj } from '../router/router';
-import AuthContext from '../store/authContext';
+import { AuthContext } from '../store/authContext';
 
 export const TodoList = () => {
   const navigate = useNavigate();

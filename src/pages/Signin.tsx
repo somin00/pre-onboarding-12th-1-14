@@ -6,7 +6,7 @@ import { AuthForm } from '../components/auth/AuthForm';
 import { AuthInput } from '../components/auth/AuthInput';
 import { useFormValidation } from '../hooks/useInputValidation';
 import { pathsObj } from '../router/router';
-import AuthContext from '../store/authContext';
+import { AuthContext } from '../store/authContext';
 
 export const Signin = () => {
   const { handleSubmit, isBtnDisabled, validationResult, setValidationResult } =

@@ -8,7 +8,7 @@ type AuthContextType = {
   onLogin: (enterdUserData: string) => void;
 };
 
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   accessToken: '',
   onLogin: enterdUserData => {},
 });
@@ -29,5 +29,3 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthContext;

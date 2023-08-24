@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-const PageNavigation = () => {
+export const PageNavigation = () => {
   return (
     <header>
       <nav>
@@ -43,5 +43,3 @@ const StyledList = styled.ul`
     text-decoration: underline;
   }
 `;
-
-export default PageNavigation;

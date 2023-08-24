@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { authStatusCodeObj, userApis } from '../apis/user';
 import { TestId } from '../components/auth/AuthForm';
 import { pathsObj } from '../router/router';
-import AuthContext from '../store/authContext';
+import { AuthContext } from '../store/authContext';
 
 type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
