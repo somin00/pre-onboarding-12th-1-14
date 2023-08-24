@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
-import { pathsObj } from '../router/router';
 import { todoApis, todoStatusObj } from '../apis/todo';
 import { Todo } from '../components/Todo';
 import { useTodo } from '../hooks/useTodo';
+import { pathsObj } from '../router/router';
 
 export const TodoList = () => {
   const navigate = useNavigate();

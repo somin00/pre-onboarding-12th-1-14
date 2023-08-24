@@ -1,6 +1,8 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { authStatusCodeObj, userApis } from '../apis/user';
+
 import { useNavigate } from 'react-router-dom';
+
+import { authStatusCodeObj, userApis } from '../apis/user';
 import { TestId } from '../components/common/AuthForm';
 import { pathsObj } from '../router/router';
 

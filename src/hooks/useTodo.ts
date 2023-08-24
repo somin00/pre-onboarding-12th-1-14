@@ -1,6 +1,7 @@
-import { HandleUpdate } from '../components/Todo';
-import { todoApis, TodoItem, todoStatusObj } from '../apis/todo';
 import { FormEventHandler, useState } from 'react';
+
+import { todoApis, TodoItem, todoStatusObj } from '../apis/todo';
+import { HandleUpdate } from '../components/Todo';
 
 export const useTodo = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -47,7 +48,7 @@ export const useTodo = () => {
       .then(res => {
         const { status } = res;
         if (status === todoStatusObj.delete) {
-          let newState = [...todos];
+          const newState = [...todos];
           delete newState[idx];
           setTodos(newState.filter(todo => todo !== undefined));
         }
