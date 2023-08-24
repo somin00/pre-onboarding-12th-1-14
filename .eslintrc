@@ -17,6 +17,7 @@
     "eqeqeq": "error",
     "dot-notation": "error",
     "no-unused-vars": "error",
+    "@typescript-eslint/no-empty-function": "off",
     "import/order": [
       "error",
       {

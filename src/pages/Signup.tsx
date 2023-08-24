@@ -2,8 +2,8 @@ import { useContext, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { AuthForm } from '../components/common/AuthForm';
-import { AuthInput } from '../components/common/AuthInput';
+import { AuthForm } from '../components/auth/AuthForm';
+import { AuthInput } from '../components/auth/AuthInput';
 import { useFormValidation } from '../hooks/useInputValidation';
 import { pathsObj } from '../router/router';
 import AuthContext from '../store/authContext';

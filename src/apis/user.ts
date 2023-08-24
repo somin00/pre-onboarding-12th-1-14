@@ -1,4 +1,4 @@
-import { TestId } from '../components/common/AuthForm';
+import { TestId } from '../components/auth/AuthForm';
 
 import { axiosInstance } from './config';
 
