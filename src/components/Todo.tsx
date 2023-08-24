@@ -25,13 +25,13 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
     <StyledTodoItem>
       <label>
         <input
-          type="checkbox"
+          type='checkbox'
           onChange={e => handleUpdate(e, todo, idx)}
           checked={todo.isCompleted}
         />
         {updateMode ? (
           <input
-            data-testid="modify-input"
+            data-testid='modify-input'
             defaultValue={todo.todo}
             onChange={e => setTodoState(e.currentTarget.value)}
           />
@@ -43,8 +43,8 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
         {updateMode ? (
           <>
             <button
-              type="button"
-              data-testid="submit-button"
+              type='button'
+              data-testid='submit-button'
               onClick={e => {
                 handleUpdate(e, { ...todo, todo: todoState }, idx);
                 setUpdateMode(false);
@@ -52,16 +52,16 @@ export const Todo: FC<Props> = ({ todo, idx, handleUpdate, handleDelete }) => {
             >
               제출
             </button>
-            <button data-testid="cancel-button" onClick={() => setUpdateMode(false)}>
+            <button data-testid='cancel-button' onClick={() => setUpdateMode(false)}>
               취소
             </button>
           </>
         ) : (
           <>
-            <button data-testid="modify-button" onClick={() => setUpdateMode(true)}>
+            <button data-testid='modify-button' onClick={() => setUpdateMode(true)}>
               수정
             </button>
-            <button data-testid="delete-button" onClick={() => handleDelete(todo.id, idx)}>
+            <button data-testid='delete-button' onClick={() => handleDelete(todo.id, idx)}>
               삭제
             </button>
           </>

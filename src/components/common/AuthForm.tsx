@@ -35,7 +35,7 @@ export const AuthForm: FC<PropsWithChildren<Props>> = ({
       <h1>{title}</h1>
       {children}
       <StyledSubmitButton
-        type="submit"
+        type='submit'
         isActive={isBtnDisabled}
         disabled={!isBtnDisabled}
         data-testid={testId + '-button'}
