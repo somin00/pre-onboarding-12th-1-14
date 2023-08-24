@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import PageNavigation from '../components/PageNavigation';
+import PageNavigation from '../components/layout/PageNavigation';
 import { pathsObj } from '../router/router';
 import AuthContext from '../store/authContext';
 
@@ -21,10 +21,12 @@ export const Home = () => {
   }, [ctx.accessToken, navigate]);
 
   return (
-    <StyledMain>
+    <>
       <PageNavigation />
-      <Outlet />
-    </StyledMain>
+      <StyledMain>
+        <Outlet />
+      </StyledMain>
+    </>
   );
 };
 
