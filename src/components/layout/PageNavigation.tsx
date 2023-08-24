@@ -8,17 +8,17 @@ const PageNavigation = () => {
         <StyledList>
           <li>
             <NavLink to='/signup' className={({ isActive }) => (isActive ? 'active' : undefined)}>
-              가입하기
+              회원가입
             </NavLink>
           </li>
           <li>
             <NavLink to='/signin' className={({ isActive }) => (isActive ? 'active' : undefined)}>
-              로그인하기
+              로그인
             </NavLink>
           </li>
           <li>
             <NavLink to='/todo' className={({ isActive }) => (isActive ? 'active' : undefined)}>
-              할 일
+              Todo List
             </NavLink>
           </li>
         </StyledList>
