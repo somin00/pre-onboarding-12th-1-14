@@ -26,13 +26,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "husky install",
-    "format": "prettier --cache --write .",
-    "lint": "eslint --cache ."
+    "postinstall": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{js, ts, jsx, tsx}": [
-      "eslint --fix"
+    "./src/**/*.{js,ts,jsx,tsx}": [
+      "eslint",
+      "prettier --write"
     ]
   },
   "eslintConfig": {
