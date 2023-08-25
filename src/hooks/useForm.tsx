@@ -3,10 +3,10 @@ import { ChangeEvent, FormEvent, useCallback, useContext, useEffect, useState } 
 import { AxiosError, isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { authStatusCodeObj, userApis } from '../apis/user';
-import { TestId } from '../components/auth/AuthForm';
-import { pathsObj } from '../router/router';
-import { AuthContext } from '../store/authContext';
+import { authStatusCodeObj, userApis } from 'apis/user';
+import { TestId } from 'components/auth/AuthForm';
+import { pathsObj } from 'router/router';
+import { AuthContext } from 'store/authContext';
 
 export type UseForm = (regex: AuthRegex) => {
   handleChange: HandleChange;

@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from 'react';
 
-import { todoApis, TodoItem, todoStatusObj } from '../apis/todo';
-import { HandleUpdate } from '../components/todo/TodoCard';
+import { todoApis, TodoItem, todoStatusObj } from 'apis/todo';
+import { HandleUpdate } from 'components/todo/TodoCard';
 
 export const useTodo = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);

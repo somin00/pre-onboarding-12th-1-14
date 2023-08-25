@@ -2,13 +2,13 @@ import { useContext, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { todoApis, todoStatusObj } from '../apis/todo';
-import { TodoContainer } from '../components/todo/TodoContainer';
-import { TodoInput } from '../components/todo/TodoInput';
-import { TodoList } from '../components/todo/TodoList';
-import { useTodo } from '../hooks/useTodo';
-import { pathsObj } from '../router/router';
-import { AuthContext } from '../store/authContext';
+import { todoApis, todoStatusObj } from 'apis/todo';
+import { TodoContainer } from 'components/todo/TodoContainer';
+import { TodoInput } from 'components/todo/TodoInput';
+import { TodoList } from 'components/todo/TodoList';
+import { useTodo } from 'hooks/useTodo';
+import { pathsObj } from 'router/router';
+import { AuthContext } from 'store/authContext';
 
 export const Todo = () => {
   const navigate = useNavigate();
