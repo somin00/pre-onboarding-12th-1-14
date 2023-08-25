@@ -1,6 +1,6 @@
 import { TestId } from '../components/auth/AuthForm';
 
-import { axiosInstance } from './config';
+import { userInstance } from './config';
 
 export const authStatusCodeObj = {
   signup: 201,
@@ -8,23 +8,17 @@ export const authStatusCodeObj = {
 } as const;
 
 const signup = (data: Record<TestId['input'], string>) => {
-  return axiosInstance({
+  return userInstance({
     url: 'auth/signup',
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     data,
   });
 };
 
 const signin = (data: Record<TestId['input'], string>) => {
-  return axiosInstance({
+  return userInstance({
     url: 'auth/signin',
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     data,
   });
 };
