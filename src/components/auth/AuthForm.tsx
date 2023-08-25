@@ -2,11 +2,7 @@ import type { FC, PropsWithChildren } from 'react';
 
 import styled from '@emotion/styled';
 
-import type {
-  HandleSubmit,
-  UseFormValidation,
-  ValidationResult,
-} from '../../hooks/useInputValidation';
+import type { HandleSubmit, UseForm } from '../../hooks/useForm';
 
 export type TestId = {
   input: 'email' | 'password';
@@ -15,9 +11,8 @@ export type TestId = {
 type Props = {
   title: string;
   testId: TestId['button'];
-  validationResult: ValidationResult;
   handleSubmit: HandleSubmit<TestId['button']>;
-  isBtnDisabled: ReturnType<UseFormValidation>['isBtnDisabled'];
+  isBtnDisabled: ReturnType<UseForm>['isBtnDisabled'];
 };
 
 const FORM_WIDTH = 400;

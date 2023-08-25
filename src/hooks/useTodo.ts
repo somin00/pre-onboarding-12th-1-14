@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from 'react';
 
 import { todoApis, TodoItem, todoStatusObj } from '../apis/todo';
-import { HandleUpdate } from '../components/Todo';
+import { HandleUpdate } from '../components/todo/TodoCard';
 
 export const useTodo = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -17,7 +17,7 @@ export const useTodo = () => {
           const { data, status } = res;
           if (status === todoStatusObj.create) setTodos(prev => [...prev, data]);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
     }
   };
 
@@ -27,7 +27,6 @@ export const useTodo = () => {
     let payload;
     if (type === 'checkbox') payload = { ...data, isCompleted: !isCompleted };
     if (type === 'button') payload = { ...data, todo };
-
     payload &&
       todoApis
         .updateTodo(id, payload)
@@ -39,7 +38,7 @@ export const useTodo = () => {
             setTodos(newState);
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
   };
 
   const handleDelete = (id: number, idx: number) => {
@@ -53,7 +52,7 @@ export const useTodo = () => {
           setTodos(newState.filter(todo => todo !== undefined));
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   return {
