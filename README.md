@@ -37,15 +37,16 @@
 
 ## 3. 추가한 라이브러리
 
-| 목적        | 이름             | 버전     | 링크                                                                                             |
-| ----------- | ---------------- | -------- | ------------------------------------------------------------------------------------------------ |
-| HTTP Client | axios            | ^1.4.0   | [https://www.npmjs.com/package/axios](https://www.npmjs.com/package/axios)                       |
-| 라우터 설정 | react-router-dom | ^6.14.2  | [https://www.npmjs.com/package/react-router-dom](https://www.npmjs.com/package/react-router-dom) |
-| 스타일      | @emotion/styled  | ^11.11.0 | [https://www.npmjs.com/package/@emotion/styled](https://www.npmjs.com/package/@emotion/styled)   |
-| 환경 설정   | eslint           | ^8.47.0  | [https://www.npmjs.com/package/eslint](https://www.npmjs.com/package/eslint)                     |
-| 환경 설정   | prettier         | ^3.0.2   | [https://www.npmjs.com/package/prettier](https://www.npmjs.com/package/prettier)                 |
-| 환경 설정   | husky            | ^8.0.3   | [https://www.npmjs.com/package/husky](https://www.npmjs.com/package/husky)                       |
-| 환경 설정   | lint-staged      | ^14.0.1  | [https://www.npmjs.com/package/lint-staged](https://www.npmjs.com/package/lint-staged)           |
+| 목적        | 이름                                   | 버전     | 링크                                                                                                                                         |
+| ----------- | -------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP Client | axios                                  | ^1.4.0   | [https://www.npmjs.com/package/axios](https://www.npmjs.com/package/axios)                                                                   |
+| 라우터 설정 | react-router-dom                       | ^6.14.2  | [https://www.npmjs.com/package/react-router-dom](https://www.npmjs.com/package/react-router-dom)                                             |
+| 스타일      | @emotion/styled                        | ^11.11.0 | [https://www.npmjs.com/package/@emotion/styled](https://www.npmjs.com/package/@emotion/styled)                                               |
+| 환경 설정   | eslint                                 | ^8.47.0  | [https://www.npmjs.com/package/eslint](https://www.npmjs.com/package/eslint)                                                                 |
+| 환경 설정   | prettier                               | ^3.0.2   | [https://www.npmjs.com/package/prettier](https://www.npmjs.com/package/prettier)                                                             |
+| 환경 설정   | husky                                  | ^8.0.3   | [https://www.npmjs.com/package/husky](https://www.npmjs.com/package/husky)                                                                   |
+| 환경 설정   | lint-staged                            | ^14.0.1  | [https://www.npmjs.com/package/lint-staged](https://www.npmjs.com/package/lint-staged)                                                       |
+| 환경 설정   | eslint-plugin-no-relative-import-paths | ^1.5.2   | [https://www.npmjs.com/package/eslint-plugin-no-relative-import-paths](https://www.npmjs.com/package/eslint-plugin-no-relative-import-paths) |
 
 <br />
 
