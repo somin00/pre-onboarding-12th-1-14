@@ -2,9 +2,8 @@ import { FC, HTMLInputTypeAttribute } from 'react';
 
 import styled from '@emotion/styled';
 
-import { HandleChange } from '../../hooks/useForm';
-
-import { TestId } from './AuthForm';
+import { TestId } from 'components/auth/AuthForm';
+import { HandleChange } from 'hooks/useForm';
 
 type Props = {
   type: HTMLInputTypeAttribute;

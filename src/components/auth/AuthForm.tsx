@@ -2,7 +2,7 @@ import type { FC, PropsWithChildren } from 'react';
 
 import styled from '@emotion/styled';
 
-import type { HandleSubmit, UseForm } from '../../hooks/useForm';
+import type { HandleSubmit, UseForm } from 'hooks/useForm';
 
 export type TestId = {
   input: 'email' | 'password';

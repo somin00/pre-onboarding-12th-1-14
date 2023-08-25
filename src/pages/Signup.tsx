@@ -2,11 +2,11 @@ import { useContext, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { AuthForm } from '../components/auth/AuthForm';
-import { AuthInput } from '../components/auth/AuthInput';
-import { useForm } from '../hooks/useForm';
-import { pathsObj } from '../router/router';
-import { AuthContext } from '../store/authContext';
+import { AuthForm } from 'components/auth/AuthForm';
+import { AuthInput } from 'components/auth/AuthInput';
+import { useForm } from 'hooks/useForm';
+import { pathsObj } from 'router/router';
+import { AuthContext } from 'store/authContext';
 
 export const placeholder = {
   email: '이메일은 @가 포함되어야 합니다.',

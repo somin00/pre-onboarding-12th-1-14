@@ -1,8 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { TodoItem } from '../../apis/todo';
-
-import { HandleDelete, HandleUpdate, TodoCard } from './TodoCard';
+import { TodoItem } from 'apis/todo';
+import { HandleDelete, HandleUpdate, TodoCard } from 'components/todo/TodoCard';
 
 type Props = {
   todos: TodoItem[];

@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEvent, FC, useState, PropsWithChildren } from 'react'
 
 import styled from '@emotion/styled';
 
-import type { TodoItem } from '../../apis/todo';
+import type { TodoItem } from 'apis/todo';
 
 export type HandleUpdate = (
   e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
