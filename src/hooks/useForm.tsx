@@ -9,7 +9,12 @@ import { pathsObj } from '../router/router';
 type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
 
-export type UseForm = typeof useForm;
+export type UseForm = (regex: (typeof authRegex)[AuthRegexKey]) => {
+  handleSubmit: HandleSubmit<TestId['button']>;
+  isBtnDisabled: boolean;
+  validationResult: ValidationResult;
+  setValidationResult: Dispatch<SetStateAction<ValidationResult>>;
+};
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void;
 export type ValidationResult = Record<TestId['input'], boolean>;
 
@@ -20,7 +25,7 @@ const authRegex = {
 
 export const testRegex: TestRegex = (type, value) => authRegex[type].test(value);
 
-export const useForm = () => {
+export const useForm: UseForm = regex => {
   const navigate = useNavigate();
 
   const [validationResult, setValidationResult] = useState<ValidationResult>({
