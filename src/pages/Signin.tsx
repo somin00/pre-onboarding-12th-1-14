@@ -1,10 +1,24 @@
+import { useContext, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { AuthForm } from '../components/auth/AuthForm';
 import { AuthInput } from '../components/auth/AuthInput';
 import { useFormValidation } from '../hooks/useInputValidation';
+import { pathsObj } from '../router/router';
+import { AuthContext } from '../store/authContext';
 
 export const Signin = () => {
   const { handleSubmit, isBtnDisabled, validationResult, setValidationResult } =
     useFormValidation();
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (ctx.accessToken) {
+      navigate(pathsObj.todo);
+    }
+  }, [ctx.accessToken, navigate]);
 
   return (
     <section>
