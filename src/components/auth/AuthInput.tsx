@@ -1,31 +1,26 @@
-import { FC, ChangeEventHandler, Dispatch, HTMLInputTypeAttribute, SetStateAction } from 'react';
+import { FC, HTMLInputTypeAttribute } from 'react';
 
 import styled from '@emotion/styled';
 
-import { testRegex, ValidationResult } from '../../hooks/useInputValidation';
+import { HandleChange } from '../../hooks/useForm';
 
 import { TestId } from './AuthForm';
 
 type Props = {
   type: HTMLInputTypeAttribute;
   testId: TestId['input'];
-  setValidationResult: Dispatch<SetStateAction<ValidationResult>>;
+  placeholder: string;
+  handleChange: HandleChange;
 };
 
-export const AuthInput: FC<Props> = ({ type, testId, setValidationResult }) => {
-  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
-    setValidationResult(prev => ({
-      ...prev,
-      [testId]: testRegex(testId, e.target.value),
-    }));
-  };
-
+export const AuthInput: FC<Props> = ({ type, testId, placeholder, handleChange }) => {
   return (
     <StyledInput
       type={type}
       name={testId}
       data-testid={testId + '-input'}
-      onChange={handleChange}
+      onChange={e => handleChange(e, testId)}
+      placeholder={placeholder}
     />
   );
 };

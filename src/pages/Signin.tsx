@@ -4,13 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '../components/auth/AuthForm';
 import { AuthInput } from '../components/auth/AuthInput';
-import { useFormValidation } from '../hooks/useInputValidation';
+import { useForm } from '../hooks/useForm';
 import { pathsObj } from '../router/router';
 import { AuthContext } from '../store/authContext';
 
+import { placeholder } from './Signup';
+
 export const Signin = () => {
-  const { handleSubmit, isBtnDisabled, validationResult, setValidationResult } =
-    useFormValidation();
+  const { handleSubmit, isBtnDisabled, handleChange } = useForm({
+    email: /@/,
+    password: /^.{8,}$/,
+  });
   const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -27,10 +31,19 @@ export const Signin = () => {
         testId='signin'
         handleSubmit={handleSubmit}
         isBtnDisabled={isBtnDisabled}
-        validationResult={validationResult}
       >
-        <AuthInput type='email' testId='email' setValidationResult={setValidationResult} />
-        <AuthInput type='password' testId='password' setValidationResult={setValidationResult} />
+        <AuthInput
+          type='email'
+          testId='email'
+          placeholder={placeholder.email}
+          handleChange={handleChange}
+        />
+        <AuthInput
+          type='password'
+          testId='password'
+          placeholder={placeholder.password}
+          handleChange={handleChange}
+        />
       </AuthForm>
     </section>
   );

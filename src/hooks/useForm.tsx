@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,21 +7,18 @@ import { TestId } from '../components/auth/AuthForm';
 import { pathsObj } from '../router/router';
 import { AuthContext } from '../store/authContext';
 
-type AuthRegexKey = keyof typeof authRegex;
-type TestRegex = (type: AuthRegexKey, value: string) => boolean;
-
-export type UseFormValidation = typeof useFormValidation;
-export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, path: T) => void;
+export type UseForm = (regex: AuthRegex) => {
+  handleChange: HandleChange;
+  handleSubmit: HandleSubmit<TestId['button']>;
+  isBtnDisabled: boolean;
+};
+export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void;
+export type HandleChange = (e: ChangeEvent<HTMLInputElement>, testId: TestId['input']) => void;
 export type ValidationResult = Record<TestId['input'], boolean>;
 
-const authRegex = {
-  email: /^(.+)@(.+)$/,
-  password: /^.{9,}$/,
-};
+type AuthRegex = Record<'email' | 'password', RegExp>;
 
-export const testRegex: TestRegex = (type, value) => authRegex[type].test(value);
-
-export const useFormValidation = () => {
+export const useForm: UseForm = regex => {
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
 
@@ -30,6 +27,13 @@ export const useFormValidation = () => {
     password: false,
   });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
+  const handleChange: HandleChange = (e, testId) => {
+    setValidationResult(prev => ({
+      ...prev,
+      [testId]: regex[testId].test(e.target.value),
+    }));
+  };
 
   useEffect(() => {
     checkValidationResult();
@@ -43,30 +47,29 @@ export const useFormValidation = () => {
     setIsBtnDisabled(true);
   };
 
-  const handleSubmit: HandleSubmit<TestId['button']> = (e, path) => {
+  const handleSubmit: HandleSubmit<TestId['button']> = (e, testId) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const payload = Object.fromEntries(formData) as Record<TestId['input'], string>;
 
-    userApis[path](payload)
+    userApis[testId](payload)
       .then(res => {
         const { data, status } = res;
-        if (status === authStatusCodeObj[path]) {
-          if (path === 'signin') {
+        if (status === authStatusCodeObj[testId]) {
+          if (testId === 'signin') {
             ctx.onLogin(data.access_token);
             navigate(pathsObj.todo);
           }
-          if (path === 'signup') navigate(pathsObj.signin);
+          if (testId === 'signup') navigate(pathsObj.signin);
         }
       })
       .catch(err => console.log(err));
   };
 
   return {
+    handleChange,
     handleSubmit,
     isBtnDisabled,
-    validationResult,
-    setValidationResult,
   };
 };
