@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -10,11 +10,12 @@ type AuthRegexKey = keyof typeof authRegex;
 type TestRegex = (type: AuthRegexKey, value: string) => boolean;
 
 export type UseForm = (regex: (typeof authRegex)[AuthRegexKey]) => {
+  handleChange: HandleChange;
   handleSubmit: HandleSubmit<TestId['button']>;
   isBtnDisabled: boolean;
-  setValidationResult: Dispatch<SetStateAction<ValidationResult>>;
 };
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void;
+export type HandleChange = (e: ChangeEvent<HTMLInputElement>, testId: TestId['input']) => void;
 export type ValidationResult = Record<TestId['input'], boolean>;
 
 const authRegex = {
@@ -32,6 +33,13 @@ export const useForm: UseForm = regex => {
     password: false,
   });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
+  const handleChange: HandleChange = (e, testId) => {
+    setValidationResult(prev => ({
+      ...prev,
+      [testId]: testRegex(testId, e.target.value),
+    }));
+  };
 
   useEffect(() => {
     checkValidationResult();
@@ -66,8 +74,8 @@ export const useForm: UseForm = regex => {
   };
 
   return {
+    handleChange,
     handleSubmit,
     isBtnDisabled,
-    setValidationResult,
   };
 };
