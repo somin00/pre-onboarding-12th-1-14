@@ -2,6 +2,8 @@ import { AuthForm } from '../components/common/AuthForm';
 import { AuthInput } from '../components/common/AuthInput';
 import { useForm } from '../hooks/useForm';
 
+import { placeholder } from './Signup';
+
 export const Signin = () => {
   const { handleSubmit, isBtnDisabled, handleChange } = useForm({
     email: /@/,
@@ -16,8 +18,18 @@ export const Signin = () => {
         handleSubmit={handleSubmit}
         isBtnDisabled={isBtnDisabled}
       >
-        <AuthInput type='email' testId='email' handleChange={handleChange} />
-        <AuthInput type='password' testId='password' handleChange={handleChange} />
+        <AuthInput
+          type='email'
+          testId='email'
+          placeholder={placeholder.email}
+          handleChange={handleChange}
+        />
+        <AuthInput
+          type='password'
+          testId='password'
+          placeholder={placeholder.password}
+          handleChange={handleChange}
+        />
       </AuthForm>
     </section>
   );
