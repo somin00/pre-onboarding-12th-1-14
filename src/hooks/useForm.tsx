@@ -6,10 +6,7 @@ import { authStatusCodeObj, userApis } from '../apis/user';
 import { TestId } from '../components/common/AuthForm';
 import { pathsObj } from '../router/router';
 
-type AuthRegexKey = keyof typeof authRegex;
-type TestRegex = (type: AuthRegexKey, value: string) => boolean;
-
-export type UseForm = (regex: (typeof authRegex)[AuthRegexKey]) => {
+export type UseForm = (regex: AuthRegex) => {
   handleChange: HandleChange;
   handleSubmit: HandleSubmit<TestId['button']>;
   isBtnDisabled: boolean;
@@ -18,12 +15,7 @@ export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void
 export type HandleChange = (e: ChangeEvent<HTMLInputElement>, testId: TestId['input']) => void;
 export type ValidationResult = Record<TestId['input'], boolean>;
 
-const authRegex = {
-  email: /@/,
-  password: /^.{8,}$/,
-};
-
-export const testRegex: TestRegex = (type, value) => authRegex[type].test(value);
+type AuthRegex = Record<'email' | 'password', RegExp>;
 
 export const useForm: UseForm = regex => {
   const navigate = useNavigate();
@@ -37,7 +29,7 @@ export const useForm: UseForm = regex => {
   const handleChange: HandleChange = (e, testId) => {
     setValidationResult(prev => ({
       ...prev,
-      [testId]: testRegex(testId, e.target.value),
+      [testId]: regex[testId].test(e.target.value),
     }));
   };
 
