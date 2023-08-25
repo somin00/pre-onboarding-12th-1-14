@@ -1,10 +1,12 @@
 import { AuthForm } from '../components/common/AuthForm';
 import { AuthInput } from '../components/common/AuthInput';
-import { useFormValidation } from '../hooks/useInputValidation';
+import { useForm } from '../hooks/useForm';
 
 export const Signin = () => {
-  const { handleSubmit, isBtnDisabled, validationResult, setValidationResult } =
-    useFormValidation();
+  const { handleSubmit, isBtnDisabled, handleChange } = useForm({
+    email: /@/,
+    password: /^.{8,}$/,
+  });
 
   return (
     <section>
@@ -13,10 +15,9 @@ export const Signin = () => {
         testId='signin'
         handleSubmit={handleSubmit}
         isBtnDisabled={isBtnDisabled}
-        validationResult={validationResult}
       >
-        <AuthInput type='email' testId='email' setValidationResult={setValidationResult} />
-        <AuthInput type='password' testId='password' setValidationResult={setValidationResult} />
+        <AuthInput type='email' testId='email' handleChange={handleChange} />
+        <AuthInput type='password' testId='password' handleChange={handleChange} />
       </AuthForm>
     </section>
   );
