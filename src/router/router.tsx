@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ErrorBoundary } from '../pages/ErrorBoundary';
-import { Home } from '../pages/Home';
-import { Signin } from '../pages/Signin';
-import { Signup } from '../pages/Signup';
-import { Todo } from '../pages/Todo';
+import { ErrorBoundary } from 'pages/ErrorBoundary';
+import { Home } from 'pages/Home';
+import { Signin } from 'pages/Signin';
+import { Signup } from 'pages/Signup';
+import { Todo } from 'pages/Todo';
 
 export const pathsObj = {
   signup: '/signup',

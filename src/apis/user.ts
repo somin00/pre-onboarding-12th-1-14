@@ -1,4 +1,4 @@
-import { TestId } from '../components/auth/AuthForm';
+import { TestId } from 'components/auth/AuthForm';
 
 import { userInstance } from './config';
 
