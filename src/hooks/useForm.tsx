@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useContext, useEffect, useState } from 'react';
 
 import { AxiosError, isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -38,17 +38,17 @@ export const useForm: UseForm = regex => {
     }));
   };
 
-  useEffect(() => {
-    checkValidationResult();
-  }, [validationResult]);
-
-  const checkValidationResult = () => {
+  const checkValidationResult = useCallback(() => {
     let key: keyof ValidationResult;
 
     for (key in validationResult) if (!validationResult[key]) return setIsBtnDisabled(false);
 
     setIsBtnDisabled(true);
-  };
+  }, [validationResult]);
+
+  useEffect(() => {
+    checkValidationResult();
+  }, [checkValidationResult]);
 
   const handleSubmit: HandleSubmit<TestId['button']> = (e, testId) => {
     e.preventDefault();
