@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -6,14 +6,15 @@ import { todoApis, todoStatusObj } from '../apis/todo';
 import { Todo } from '../components/Todo';
 import { useTodo } from '../hooks/useTodo';
 import { pathsObj } from '../router/router';
+import { AuthContext } from '../store/authContext';
 
 export const TodoList = () => {
   const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
   const { todos, setTodos, handleSubmit, handleUpdate, handleDelete } = useTodo();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) navigate(pathsObj.signin);
+    if (!ctx.accessToken) navigate(pathsObj.signin);
     else {
       todoApis
         .getTodos()
