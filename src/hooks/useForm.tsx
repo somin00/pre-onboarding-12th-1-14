@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 
+import { AxiosError, isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import { authStatusCodeObj, userApis } from '../apis/user';
@@ -12,6 +13,8 @@ export type UseForm = (regex: AuthRegex) => {
   handleSubmit: HandleSubmit<TestId['button']>;
   isBtnDisabled: boolean;
 };
+
+export type HandleError<T> = (error: AxiosError<T>) => void;
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void;
 export type HandleChange = (e: ChangeEvent<HTMLInputElement>, testId: TestId['input']) => void;
 export type ValidationResult = Record<TestId['input'], boolean>;
@@ -64,7 +67,14 @@ export const useForm: UseForm = regex => {
           if (testId === 'signup') navigate(pathsObj.signin);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => handleError(err));
+  };
+
+  const handleError: HandleError<{ status: number; message: string }> = error => {
+    if (isAxiosError(error) && error.response) {
+      const { status } = error.response;
+      alert(status + ' ' + error.response.data.message);
+    } else alert('Unknown Network error');
   };
 
   return {
