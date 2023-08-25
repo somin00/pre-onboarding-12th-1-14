@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react';
 
 import { TodoItem } from '../../apis/todo';
 
-import { HandleDelete, HandleUpdate, Todo } from './TodoCard';
+import { HandleDelete, HandleUpdate, TodoCard } from './TodoCard';
 
 type Props = {
   todos: TodoItem[];
@@ -16,7 +16,7 @@ export const TodoList: FC<PropsWithChildren<Props>> = ({ todos, handleUpdate, ha
       <h1>Todo List</h1>
       <ul>
         {todos.map((todo, idx) => (
-          <Todo
+          <TodoCard
             key={todo.id}
             todo={todo}
             idx={idx}
