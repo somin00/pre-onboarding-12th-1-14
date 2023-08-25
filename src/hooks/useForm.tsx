@@ -12,7 +12,6 @@ type TestRegex = (type: AuthRegexKey, value: string) => boolean;
 export type UseForm = (regex: (typeof authRegex)[AuthRegexKey]) => {
   handleSubmit: HandleSubmit<TestId['button']>;
   isBtnDisabled: boolean;
-  validationResult: ValidationResult;
   setValidationResult: Dispatch<SetStateAction<ValidationResult>>;
 };
 export type HandleSubmit<T> = (e: FormEvent<HTMLFormElement>, testId: T) => void;
@@ -69,7 +68,6 @@ export const useForm: UseForm = regex => {
   return {
     handleSubmit,
     isBtnDisabled,
-    validationResult,
     setValidationResult,
   };
 };
