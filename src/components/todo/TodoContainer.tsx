@@ -7,6 +7,6 @@ export const TodoContainer: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const StyledSection = styled.section`
-  display: 'grid';
-  gap: '10px';
+  display: grid;
+  gap: 10px;
 `;
