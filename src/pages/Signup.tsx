@@ -36,7 +36,7 @@ export const Signup = () => {
         isBtnDisabled={isBtnDisabled}
       >
         <AuthInput
-          type='email'
+          type='text'
           testId='email'
           placeholder={placeholder.email}
           handleChange={handleChange}
