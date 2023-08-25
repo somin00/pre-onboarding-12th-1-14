@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Signup } from '../pages/Signup';
-import { Signin } from '../pages/Signin';
+
+import { ErrorBoundary } from '../pages/ErrorBoundary';
 import { Home } from '../pages/Home';
-import { TodoList } from '../pages/TodoList';
+import { Signin } from '../pages/Signin';
+import { Signup } from '../pages/Signup';
+import { Todo } from '../pages/Todo';
 
 export const pathsObj = {
   signup: '/signup',
@@ -12,8 +14,9 @@ export const pathsObj = {
 
 export const router = createBrowserRouter([
   {
-    path: '',
+    path: '/',
     element: <Home />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: pathsObj.signup,
@@ -25,7 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: pathsObj.todo,
-        element: <TodoList />,
+        element: <Todo />,
       },
     ],
   },

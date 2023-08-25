@@ -1,20 +1,32 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import { PageNavigation } from '../components/layout/PageNavigation';
 import { pathsObj } from '../router/router';
+import { AuthContext } from '../store/authContext';
 
 export const Home = () => {
+  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('access_token');
-    if (accessToken) navigate(pathsObj.todo);
-  }, []);
+    if (ctx.accessToken) {
+      navigate(pathsObj.todo);
+    }
+    if (!ctx.accessToken) {
+      navigate(pathsObj.signin);
+    }
+  }, [ctx.accessToken, navigate]);
 
   return (
-    <StyledMain>
-      <Outlet />
-    </StyledMain>
+    <>
+      <PageNavigation />
+      <StyledMain>
+        <Outlet />
+      </StyledMain>
+    </>
   );
 };
 
